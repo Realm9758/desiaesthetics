@@ -1,6 +1,6 @@
 import { Reveal } from "@/components/Reveal";
 import { Rise } from "@/components/Rise";
-import { ArrowIcon, PhoneIcon, StarIcon, WhatsAppIcon } from "@/components/Icons";
+import { ArrowIcon, PhoneIcon, WhatsAppIcon } from "@/components/Icons";
 import {
   approach,
   clinic,
@@ -87,8 +87,11 @@ export default function Page() {
                   <div>
                     <dt className="label fact__label">Rated</dt>
                     <dd className="fact__value">
+                      {/* The count travels with the figure everywhere it appears.
+                          A 5.0 with the "1" hidden is exactly the quiet
+                          overstatement this site is built to avoid. */}
                       <a href={clinic.mapsHref} target="_blank" rel="noopener noreferrer">
-                        {clinic.rating.value.toFixed(1)} on Google
+                        {clinic.rating.value.toFixed(1)} from {clinic.rating.count} review
                       </a>
                     </dd>
                   </div>
@@ -133,14 +136,14 @@ export default function Page() {
            --------------------------------------------------------------- */}
         <section className="section section--tint" id="approach">
           <div className="shell">
-            <Reveal className="split">
+            <div className="split">
               <h2>{approach.title}</h2>
               <div className="prose measure">
                 {approach.body.map((paragraph) => (
                   <p key={paragraph.slice(0, 24)}>{paragraph}</p>
                 ))}
               </div>
-            </Reveal>
+            </div>
           </div>
         </section>
 
@@ -150,25 +153,12 @@ export default function Page() {
            --------------------------------------------------------------- */}
         <section className="section" id="reviews">
           <div className="shell">
-            <Reveal className="split">
+            <div className="split">
               <div>
-                <div className="rating">
-                  <span className="rating__value tabular">
-                    {clinic.rating.value.toFixed(1)}
-                  </span>
-                  <span
-                    className="rating__stars"
-                    role="img"
-                    aria-label={`Rated ${clinic.rating.value} out of 5 on Google, from ${clinic.rating.count} review`}
-                  >
-                    {Array.from({ length: 5 }, (_, i) => (
-                      <StarIcon key={i} />
-                    ))}
-                  </span>
-                </div>
-                <p className="rating__count">
-                  {clinic.rating.count} review on Google
-                </p>
+                <span className="rating__value tabular">
+                  {clinic.rating.value.toFixed(1)}
+                </span>
+                <p className="rating__count">from one review on Google</p>
               </div>
 
               <div className="prose measure">
@@ -185,7 +175,7 @@ export default function Page() {
                   </a>
                 </p>
               </div>
-            </Reveal>
+            </div>
           </div>
         </section>
 
@@ -193,30 +183,28 @@ export default function Page() {
             Where. Address, and an honest note that the hours live on Google
             because only the Monday opening time has ever been published.
            --------------------------------------------------------------- */}
-        <section className="section" id="visit">
+        <section className="section" id="visit" aria-label={visit.title}>
           <div className="shell">
-            <Reveal className="split">
-              <h2>{visit.title}</h2>
-              <div className="prose measure">
-                <p>
-                  <span className="fact__value">{clinic.street}</span>
-                  <br />
-                  {clinic.locality}, {clinic.town} {clinic.postcode}
-                </p>
-                <p>{visit.body}</p>
-                <p>{visit.hoursNote}</p>
-                <p>
-                  <a
-                    className="link"
-                    href={clinic.mapsHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {visit.directionsLabel}
-                  </a>
-                </p>
-              </div>
-            </Reveal>
+            <h2 className="address-statement">
+              {clinic.street},
+              <span>
+                {clinic.locality}, {clinic.town} {clinic.postcode}
+              </span>
+            </h2>
+            <div className="visit__meta">
+              <p>{visit.body}</p>
+              <p>{visit.hoursNote}</p>
+              <p>
+                <a
+                  className="link"
+                  href={clinic.mapsHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {visit.directionsLabel}
+                </a>
+              </p>
+            </div>
           </div>
         </section>
       </main>
@@ -228,25 +216,23 @@ export default function Page() {
       <div className="night">
         <section className="close">
           <div className="shell">
-            <Reveal>
-              <h2 className="measure-tight">{close.title}</h2>
-              <p className="lead measure">{close.body}</p>
-              <a className="close__number tabular" href={clinic.phoneHref}>
-                {clinic.phoneDisplay}
+            <h2 className="measure-tight">{close.title}</h2>
+            <p className="lead measure">{close.body}</p>
+            <a className="close__number tabular" href={clinic.phoneHref}>
+              {clinic.phoneDisplay}
+            </a>
+            <div className="actions">
+              <a
+                className="action action--ghost"
+                href={clinic.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <WhatsAppIcon />
+                Message on WhatsApp
+                <ArrowIcon />
               </a>
-              <div className="actions">
-                <a
-                  className="action action--ghost"
-                  href={clinic.whatsappHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <WhatsAppIcon />
-                  Message on WhatsApp
-                  <ArrowIcon />
-                </a>
-              </div>
-            </Reveal>
+            </div>
           </div>
         </section>
 
