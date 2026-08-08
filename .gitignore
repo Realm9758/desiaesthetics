@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+work/
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
+.env*.local
+.impeccable/questions/
+.impeccable/live/
+.impeccable/shots/
+.impeccable/sketches/
+.impeccable/hook.cache.json
