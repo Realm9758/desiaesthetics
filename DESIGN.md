@@ -54,6 +54,42 @@ typography:
     fontSize: "0.75rem"
     fontWeight: 500
     letterSpacing: "0.15em"
+  actionLabel:
+    fontFamily: "Archivo, system-ui, -apple-system, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 500
+    letterSpacing: "0.055em"
+  wordmark:
+    fontFamily: "Libre Caslon Display, Big Caslon, Georgia, serif"
+    fontSize: "clamp(1.1rem, 1.4vw, 1.3rem)"
+    fontWeight: 400
+    letterSpacing: "0.02em"
+  heroPhone:
+    fontFamily: "Libre Caslon Display, Big Caslon, Georgia, serif"
+    fontSize: "clamp(1.5rem, 3vw, 2.1rem)"
+    fontWeight: 400
+    letterSpacing: "0.01em"
+  addressStatement:
+    fontFamily: "Libre Caslon Display, Big Caslon, Georgia, serif"
+    fontSize: "clamp(1.85rem, 4vw, 3.1rem)"
+    fontWeight: 400
+    lineHeight: 1.16
+  ratingFigure:
+    fontFamily: "Libre Caslon Display, Big Caslon, Georgia, serif"
+    fontSize: "clamp(1.7rem, 2.8vw, 2.25rem)"
+    fontWeight: 400
+    lineHeight: 1
+    letterSpacing: "-0.02em"
+  closingPhone:
+    fontFamily: "Libre Caslon Display, Big Caslon, Georgia, serif"
+    fontSize: "clamp(2.6rem, 8vw, 5rem)"
+    fontWeight: 400
+    lineHeight: 1
+    letterSpacing: "-0.015em"
+  finePrint:
+    fontFamily: "Libre Caslon Text, Georgia, Times New Roman, serif"
+    fontSize: "0.8125rem"
+    fontWeight: 400
 rounded:
   none: "0"
   hairline: "1px"
@@ -175,7 +211,19 @@ A warm limestone paper with a warm-tinted ink, one cool flint blue as the sole c
 - **Small** (400, 0.9375rem, 1.6): Footer body only.
 - **Label** (Archivo, 500, 0.75rem, 0.15em, uppercase): Fact labels, footer column heads, the masthead place line. Actions use the same face at 0.875rem / 0.055em.
 
-Two display-scale figures sit outside the ramp and are single-instance by design: the rating value at `clamp(1.7rem, 2.8vw, 2.25rem)` — deliberately one step *below* the h2 it shares a row with — and the closing phone number at `clamp(2.6rem, 8vw, 5rem)`, the largest the number appears anywhere.
+### Component sizes
+
+Seven sizes sit off the shared ramp. Each belongs to exactly one component and is **documented, not tokenised** — they are this page's composition, not reusable steps, and promoting them to tokens would invite reuse the composition was never designed for. Listed so they are reviewable rather than stray literals:
+
+- **Action label** (Archivo 500, `0.875rem`, 0.055em, uppercase): Button text. Between Label (0.75rem) and Small (0.9375rem); 14px is where an uppercase letterspaced button stops shouting.
+- **Wordmark** (Display, `clamp(1.1rem, 1.4vw, 1.3rem)`): The masthead only. Deliberately quiet — the headline is the page's voice, not the logo.
+- **Hero phone** (Display, `clamp(1.5rem, 3vw, 2.1rem)`): The number under the hero actions, big enough to read as an action itself without competing with the headline.
+- **Address statement** (Display, `clamp(1.85rem, 4vw, 3.1rem)`, 18ch measure): The visit section, where the street *is* the heading. Sits between Title and Headline so the section reads as a different register in the same grammar.
+- **Rating figure** (Display, `clamp(1.7rem, 2.8vw, 2.25rem)`): Single instance. Deliberately one step *below* the h2 it shares a row with, so the heading leads and the figure supports it.
+- **Closing phone** (Display, `clamp(2.6rem, 8vw, 5rem)`): Single instance, the largest the number appears anywhere, and the last thing on the page.
+- **Fine print** (Text, `0.8125rem`): The footer copyright line only, one step under Small.
+
+**If you add a component, take a ramp step first.** A new off-ramp size needs the same justification as these: one component, one reason, written down here.
 
 ### Named Rules
 
@@ -219,7 +267,7 @@ Depth is produced by exactly two devices. **Tonal banding:** the limestone groun
 
 ## Shapes
 
-There is no radius language: every corner in the build is square (`0`). The only rounded things are two utilities — the scrollbar thumb (`99px`, a browser affordance rather than page furniture) and the 1px softening on the focus-visible outline.
+There is no radius language: every corner in the build is square (`0`), including the scrollbar thumb. The single exception is a 1px softening on the focus-visible outline, which is imperceptible at ring weight and exists only to keep the corner from reading as a burr.
 
 Actions are rectangles with a 1px border, and that is deliberate: the category's default is a pill, the craft bar's is a rectangle, and the rectangle is the one that holds a serif page together. Icons follow one geometry — 1.5 stroke on a 24 grid, round caps and joins, sized at `1em` so they sit level with uppercase Archivo at label size.
 

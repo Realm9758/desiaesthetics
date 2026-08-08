@@ -120,10 +120,11 @@ svg {
   background: var(--stone-ground);
 }
 
+/* Square, like every other corner on the page. A pill thumb was the one
+   soft shape in a world that has no radius language. */
 ::-webkit-scrollbar-thumb {
   background: var(--stone-line);
   border: 3px solid var(--stone-ground);
-  border-radius: 99px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
