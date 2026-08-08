@@ -194,17 +194,17 @@ export default function Page() {
             <div className="visit__meta">
               <p>{visit.body}</p>
               <p>{visit.hoursNote}</p>
-              <p>
-                <a
-                  className="link"
-                  href={clinic.mapsHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {visit.directionsLabel}
-                </a>
-              </p>
             </div>
+            <p className="visit__link">
+              <a
+                className="link"
+                href={clinic.mapsHref}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {visit.directionsLabel}
+              </a>
+            </p>
           </div>
         </section>
       </main>

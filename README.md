@@ -77,6 +77,12 @@ Hairline rules and ruled indexes, never cards.
 
 Design tokens and component rules are documented in `DESIGN.md`.
 
+**Process note, recorded so it is not mistaken for a sign-off:** the visual
+direction was chosen from a set of options, but **no comp was produced;
+composition was approved only at finish review.** The page layout itself was
+never put in front of the client before it was built. If a future change wants
+to lean on "the composition was approved", it was not.
+
 ### Accessibility
 
 WCAG 2.2 AA contrast throughout, keyboard operable, visible focus rings drawn
